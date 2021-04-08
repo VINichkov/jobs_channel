@@ -33,6 +33,8 @@ gem 'cancancan'
 gem 'activeadmin'
 gem "figaro"
 gem "interactor"
+gem 'aasm'
+gem 'after_commit_everywhere'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,8 +53,7 @@ group :development do
   gem 'spring'
   gem 'webrick'
 
-  gem 'aasm'
-  gem 'after_commit_everywhere'
+
   #gem 'ruby-debug-ide'
 end
 
