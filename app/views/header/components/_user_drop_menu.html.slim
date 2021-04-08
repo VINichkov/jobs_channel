@@ -1,0 +1,12 @@
+- if user_signed_in?
+  .dropdown
+    a.dropdown-toggle#userMenu[href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"]
+      = current_user.email
+    ul.dropdown-menu[aria-labelledby="userMenu"]
+      - if can? :edit, User
+      =link_to 'Администрирование', admin_root_path, class: 'dropdown-item'
+      li
+        hr.dropdown-divider
+      =link_to 'Выйти', destroy_user_session_path, class: 'dropdown-item' ,:method => :delete
+-else
+  = link_to 'Войти', new_user_session_path, class: 'nav-link', rel: :nofollow

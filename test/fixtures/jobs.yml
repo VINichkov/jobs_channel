@@ -1,0 +1,24 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  company_name: MyString
+  company_link: MyString
+  remote: false
+  type: MyString
+  location: San Francisco
+  salary: 10.000 - 100 000 a year
+  source: MyString
+  contract: MyString
+
+two:
+  title: MyString
+  company_name: MyString
+  string: MyString
+  company_link: MyString
+  remote: false
+  type: 
+  location: MyString
+  salary: MyString
+  source: MyString
+  contract: MyString
