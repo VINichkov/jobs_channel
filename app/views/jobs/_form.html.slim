@@ -1,0 +1,61 @@
+= form_with(model: job) do |form|
+  = if job.errors.any?
+    .row.mb-3
+      .col-12
+        .error_explanation
+          h2
+            = pluralize(job.errors.count, "error")
+            |prohibited this job from being saved:
+          ul
+            - job.errors.each do |error|
+              li
+                = error.full_message
+
+  .row.mb-3
+    .col-12
+      = form.label :title, 'Job title *', class: 'form-label'
+      = form.text_field :title, class: 'form-control', required: true
+
+  .row.mb-3
+    .col-6
+      = form.label :company_name, class: 'form-label'
+      = form.text_field :company_name, class: 'form-control'
+    .col-6
+      = form.label :location, class: 'form-label'
+      = form.text_field :location, class: 'form-control'
+
+  .row.mb-3
+    .col-6
+      = form.label :job_type, class: 'form-label'
+      = form.collection_select :job_type,
+              Job.job_types.map{ |a| [a.first,a.first] }, :first, :second, {}, {class: 'form-select'}
+    .col-6
+      = form.label :remote, class: 'form-label'
+      = form.collection_select :remote,
+              Job.remotes.map { |a| [a.first,a.first] }, :first, :second, {}, { class: 'form-select' }
+  .row.mb-3
+    .col-6
+      = form.label :salary_min, "From", class: 'form-label'
+      .input-group
+        span.input-group-text
+          |$
+        = form.text_field :salary_min, type: 'number', min: '1', step: 'any', class: 'form-control'
+    .col-6
+      = form.label :salary_max, "To", class: 'form-label'
+      .input-group
+        span.input-group-text
+          |$
+        = form.text_field :salary_max, type: 'number', min: '1', step: 'any', class: 'form-control'
+  .row.mb-3
+    .col-12
+      = form.label :description, 'Job description *', class: 'form-label'
+      = form.text_area :description, class: 'form-control', rows: 10
+
+  .row.mb-3
+    .col-12
+      = form.label :contract, 'Telegram contact', class: 'form-label'
+      = form.text_field :contract, class: 'form-control'
+
+  .row.mb-3
+    .col-12
+      = form.submit 'Post Job', class: 'btn btn-primary'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_07_081844) do
+ActiveRecord::Schema.define(version: 2021_04_09_084220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,17 +34,18 @@ ActiveRecord::Schema.define(version: 2021_04_07_081844) do
     t.string "company_name"
     t.string "company_link"
     t.boolean "remote", default: false
-    t.string "type"
     t.string "location"
-    t.string "salary"
     t.string "source"
-    t.string "contract"
     t.string "aasm_state"
     t.text "description"
     t.jsonb "tags", default: [], array: true
     t.tsvector "fts"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "salary_min"
+    t.integer "salary_max"
+    t.integer "job_type", default: 0, null: false
+    t.string "contact"
     t.index ["fts"], name: "index_jobs_on_fts", using: :gin
   end
 
