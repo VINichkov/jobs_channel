@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:telegram]
 
-  def self.(auth)
+  def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.id).first_or_create do |user|
       user.provider = auth.provider || :telegram
       user.uid = auth.id
