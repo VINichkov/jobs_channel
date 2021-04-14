@@ -1,0 +1,52 @@
+.card
+  .card-header.text-center
+    h3.card-title
+      = @job.title
+  .card-body.compact
+    h5.text-center
+      strong
+        = t('show.job.job_details')
+    -if @job.company_name
+      p
+        strong
+          |#{t('show.job.company')}: &nbsp;
+        span.text-success
+          = @job.company_name
+    p
+      strong
+        |#{t('show.job.location')}: &nbsp;
+      span.text-info
+        = @job.location
+    p
+      strong
+        |#{t('show.job.remote')}: &nbsp;
+      span
+        = t("job.remote.#{@job.remote}")
+    p
+      strong
+        |#{t('show.job.job_type')}: &nbsp;
+      span
+        = t("job.job_type.#{@job.job_type}")
+    - unless @job.salary.nil?
+      p
+        strong
+          |#{t('show.job.salary')}: &nbsp;
+        span
+          =@job.salary
+  .card-body
+    h5.text-center
+      strong
+        |#{t('show.job.description')}
+    .card-text
+      =simple_format(@job.description)
+  .card-body
+    .row
+      .d-grid.gap-2.d-md-flex.justify-content-md-center
+        - if @job.contact
+          = link_to t('show.job.apply'), contact(@job.contact), class: 'btn  btn-primary'
+        - if can? :edit, @job and @job.new?
+          = link_to t('show.job.edit'), edit_job_path(@job), class: 'btn btn-warning'
+        - if can?:approve, @job and @job.new?
+          = link_to t('show.job.approve'), approve_path(@job), class: 'btn btn-success'
+        - if can? :destroy, @job
+          = link_to t('show.job.destroy'), job_path(@job), class: 'btn btn-danger', :method => :delete
