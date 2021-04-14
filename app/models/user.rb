@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:telegram]
 
   def self.from_omniauth(auth)
+    logger.info(auth)
     where(provider: auth.provider, uid: auth.id).first_or_create do |user|
       user.provider = auth.provider || :telegram
       user.uid = auth.id
