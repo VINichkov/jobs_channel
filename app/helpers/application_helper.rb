@@ -4,6 +4,12 @@ module ApplicationHelper
       div = image_tag(image_path(image), alt: title, size: 32)
       div + content_tag(:span, title)
     end
+  end
 
+
+  def contact(contact)
+    unless contact =~ /http/
+      'https://t.me/' + contact.gsub('@','')
+    end
   end
 end

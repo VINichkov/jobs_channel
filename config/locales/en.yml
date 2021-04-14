@@ -30,8 +30,94 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  salary: "$%{salary}"
+  salary_tag: "#%{salary}_usd"
+  money: $
+  job:
+    job_type:
+      full_time: Full time
+      part_time: Part time
+      casual: Casual/Temporary
+      permanent: Permanent
+    remote:
+      'no': 'No'
+      'yes': 'Yes'
+  show:
+    job:
+      job_details: Job details
+      company: Company
+      location: Location
+      remote: Remote
+      job_type: Job type
+      salary: Salary
+      description: Job description
+      apply: Click to contact via Telegram
+      contact: Contact
+      approve: Approve
+      destroy: Destroy
+      edit:  Edit
   post:
     job: Post job
+    form:
+      title_form: Post a job ad
+      title_label: Job title *
+      title_placeholder: System analyst
+      company_label: Company name
+      company_placeholder: Netflix
+      location_label: Location
+      location_placeholder: San Francisco
+      job_type_label: Job type
+      job_type:
+        full_time: Full time
+        part_time: Part time
+        casual: Casual/Temporary
+        permanent: Permanent
+      remote_label: Remote
+      remote:
+          no: No
+          yes: Yes
+      salary_min_label: From
+      salary_min_placeholder: 160000
+      salary_max_label: To
+      salary_max_placeholder: 200000
+      description_label: Job description *
+      description_min_size: (minimum is 100 characters)
+      description_placeholder: >-
+        Good job ads that attract applicants usually includes:
+         - Description of your business
+         - Responsibilities of the role
+         - Qualifications and experience you are looking for in a candidate
+         - Any benefits or perks
+      contact_label: Telegram contact
+      contact_placeholder: "@SYS_ANALYST_USA"
+      submit: Post Job
   posted:
     job:
       success: Your ad was successfully created.
+      error:
+        form: prohibited this job from being saved
+  edit:
+    job:
+      success: The job opportunity was successfully updated.
+  destroy:
+    job:
+      success: The job opportunity was successfully destroyed.
+  approve:
+    job:
+      success: The job opportunity was successfully approved.
+  activerecord:
+    attributes:
+      title: Title
+      location: Location
+      description:  Description
+    errors:
+      models:
+        job:
+          attributes:
+            title:
+              title_empty: can't be blank
+            location:
+              location_empty: can't be blank
+            description:
+              description_is_short: is too short (minimum is 100 characters)
+

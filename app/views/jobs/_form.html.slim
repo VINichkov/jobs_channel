@@ -1,61 +1,73 @@
 = form_with(model: job) do |form|
-  = if job.errors.any?
-    .row.mb-3
-      .col-12
+  - if job.errors.any?
+    .row.mb-3.sdfds
+      .col-12.text-danger
         .error_explanation
-          h2
+          p.small
             = pluralize(job.errors.count, "error")
-            |prohibited this job from being saved:
+            |&nbsp; #{t('posted.job.error.form')}:
           ul
             - job.errors.each do |error|
-              li
+              li.small
                 = error.full_message
 
   .row.mb-3
     .col-12
-      = form.label :title, 'Job title *', class: 'form-label'
-      = form.text_field :title, class: 'form-control', required: true
+      = form.label :title, t('post.form.title_label'), class: 'form-label'
+      = form.text_field :title, class: 'form-control', required: true,
+              placeholder: t('post.form.title_placeholder')
 
   .row.mb-3
     .col-6
-      = form.label :company_name, class: 'form-label'
-      = form.text_field :company_name, class: 'form-control'
+      = form.label :company_name, t('post.form.company_label'), class: 'form-label'
+      = form.text_field :company_name, class: 'form-control', placeholder: t('post.form.company_placeholder')
     .col-6
-      = form.label :location, class: 'form-label'
-      = form.text_field :location, class: 'form-control'
+      = form.label :location, t('post.form.location_label'), class: 'form-label'
+      = form.text_field :location, class: 'form-control', required: true,
+              placeholder: t('post.form.location_placeholder')
 
   .row.mb-3
     .col-6
-      = form.label :job_type, class: 'form-label'
+      = form.label :job_type, t('post.form.job_type_label'), class: 'form-label'
       = form.collection_select :job_type,
-              Job.job_types.map{ |a| [a.first,a.first] }, :first, :second, {}, {class: 'form-select'}
+              Job.job_types.map{ |a| [a.first,t("job.job_type.#{a.first}")] },
+              :first, :second, {}, {class: 'form-select'}
     .col-6
-      = form.label :remote, class: 'form-label'
+      = form.label :remote, t('post.form.remote_label'),class: 'form-label'
       = form.collection_select :remote,
-              Job.remotes.map { |a| [a.first,a.first] }, :first, :second, {}, { class: 'form-select' }
+              Job.remotes.map { |a| [a.first, t("job.remote.#{a.first}")] },
+              :first, :second, {}, { class: 'form-select' }
   .row.mb-3
     .col-6
-      = form.label :salary_min, "From", class: 'form-label'
+      = form.label :salary_min, t('post.form.salary_min_label'), class: 'form-label'
       .input-group
         span.input-group-text
-          |$
-        = form.text_field :salary_min, type: 'number', min: '1', step: 'any', class: 'form-control'
+          = t('money')
+        = form.text_field :salary_min,
+                type: 'number', min: '1', step: 'any',
+                class: 'form-control', placeholder: t('post.form.salary_min_placeholder')
     .col-6
-      = form.label :salary_max, "To", class: 'form-label'
+      = form.label :salary_max, t('post.form.salary_max_label'), class: 'form-label'
       .input-group
         span.input-group-text
-          |$
-        = form.text_field :salary_max, type: 'number', min: '1', step: 'any', class: 'form-control'
+          = t('money')
+        = form.text_field :salary_max,
+                type: 'number', min: '1', step: 'any',
+                class: 'form-control', placeholder: t('post.form.salary_max_placeholder')
   .row.mb-3
     .col-12
-      = form.label :description, 'Job description *', class: 'form-label'
-      = form.text_area :description, class: 'form-control', rows: 10
+      = form.label :description, t('post.form.description_label'), class: 'form-label'
+      small
+        |&nbsp; #{t('post.form.description_min_size')}
+      = form.text_area :description,  id: 'description_output', class: 'form-control',
+              required: true,  rows: 10,  placeholder: t('post.form.description_placeholder')
+      /#editor
+      /form-control[input = 'desc_id'  required  rows = '10'  placeholder =t('post.form.description_placeholder')]
 
   .row.mb-3
     .col-12
-      = form.label :contract, 'Telegram contact', class: 'form-label'
-      = form.text_field :contract, class: 'form-control'
-
+      = form.label :contact, t('post.form.contact_label'), class: 'form-label'
+      = form.text_field :contact, class: 'form-control', placeholder: t('post.form.contact_placeholder')
   .row.mb-3
     .col-12
-      = form.submit 'Post Job', class: 'btn btn-primary'
+      = form.submit t('post.form.submit'), class: 'btn btn-primary'

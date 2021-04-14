@@ -5,6 +5,7 @@
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
+import pell from 'pell'
 import * as ActiveStorage from "@rails/activestorage"
 // import 'bootstrap/js/src/alert'
 // import 'bootstrap/js/src/button'
@@ -22,5 +23,19 @@ import 'bootstrap/js/src/scrollspy'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+/*
+document.addEventListener("turbolinks:load", function() {
+    let editor = document.getElementById("editor");
+    let markup = document.getElementById("description_output");
+    pell.init({
+        element: editor,
+        actions: ['bold', 'italic', 'underline', 'olist', 'ulist'],
+        onChange: (html) => {
+            console.log(html)
+            markup.value = html
+        }
+    })
+})
+*/
 
 

@@ -26,3 +26,18 @@ if User.find_by_email('admin@mail.com').blank?
   )
 end
 
+if Property.find_by_code(:chat_id).blank?
+  Property.create(
+    code: :chat_id,
+    value: '12345',
+    description: 'The Id of telegram chat'
+  )
+end
+
+if Property.find_by_code(:admin_chat_id).blank?
+  Property.create(
+    code: :admin_chat_id,
+    value: '12345',
+    description: "The Id of admin's telegram chat"
+  )
+end

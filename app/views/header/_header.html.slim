@@ -1,8 +1,9 @@
 nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-  .up.container.d-flex.justify-content-between
-    a.navbar-brand href=root_path
-      = brand_tag('logo.svg')
-    .collapse.navbar-collapse.ms-auto.d-flex#navbarColor03
+  .container.justify-content-between.align-content-center
+    .d-none.d-sm-none.d-md-inline
+      a.navbar-brand href=root_path
+        = brand_tag('logo.svg')
+    .collapse.navbar-collapse.ms-auto.d-flex
       ul.navbar-nav.justify-content-end.ms-auto
         li.nav-item
           a.btn.btn-outline-light href=new_job_path rel='nofollow'

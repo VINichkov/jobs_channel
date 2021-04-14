@@ -28,13 +28,17 @@ gem 'slim'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
+gem 'omniauth'
+gem 'omniauth-telegram'
 gem 'cancancan'
 gem 'activeadmin'
 gem "figaro"
 gem "interactor"
 gem 'aasm'
 gem 'after_commit_everywhere'
+gem 'telegram-bot'
+gem 'draper'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
