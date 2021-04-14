@@ -7,5 +7,5 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
       ul.navbar-nav.justify-content-end.ms-auto
         li.nav-item
           a.btn.btn-outline-light href=new_job_path rel='nofollow'
-            = t('post.job')
+            = current_user.nil? ? t('post.job') : current_user.uid
       -# render ('header/components/user_drop_menu')
