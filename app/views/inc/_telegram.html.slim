@@ -1,4 +1,9 @@
-script[async src="https://telegram.org/js/telegram-widget.js?14"
+- if ENV["RAILS_ENV"] != "production"
+  - a = {"id"=>"1178470843", "first_name"=>"Vyacheslav", "last_name"=>"Nichkov", "auth_date"=>"1618464532", "hash"=>"63de0bbe03a3825dfaa7b8e3119534ebd2966b732119ffb0552c3b92042236f9"}
+  a.btn.bg-primary[href="#{user_telegram_omniauth_callback_url}?#{a.to_query}"]
+    |Telegram
+-else
+  script[async src="https://telegram.org/js/telegram-widget.js?14"
     data-telegram-login=ENV['telegram_bot_nickname'] data-size="large"
     data-auth-url=user_telegram_omniauth_callback_url
     data-request-access="write"]
