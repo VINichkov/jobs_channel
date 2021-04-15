@@ -7,15 +7,17 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     logger.info '------------------------------from_omniauth'
-    logger.info auth
+    logger.info auth.to_h
     logger.info '------------------------------from_omniauth'
-    where(provider: :telegram, uid: auth.id).first_or_create do |user|
-      user.provider = :telegram
-      user.uid = auth.id
-      user.first_name = auth.first_name
-      user.last_name = auth.last_name
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.image = auth.info.image
+      user.nickname = auth.info.nickname
       #user.email = auth.info.email
-      user.password = auth.hash
+      user.password = auth.info.hash
     end
   end
 

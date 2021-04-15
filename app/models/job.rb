@@ -46,13 +46,13 @@ class Job < ApplicationRecord
   end
 
   def to_telegram
-    tag_remote = remote=='no' ? I18n.t('show.job.remote') : to_hashtag(I18n.t('show.job.remote'))
-    text = String.new
+    tag_remote = remote=='no' ? I18n.t('show.job.remote') : Addition.to_hashtag(I18n.t('show.job.remote'))
+    text = ''
     text += "<b>#{title}</b>\n"
     text += "<b>#{I18n.t('show.job.company')}:</b> #{company_name}\n"
-    text += "<b>#{I18n.t('show.job.location')}:</b> #{to_hashtag(location)}\n"
+    text += "<b>#{I18n.t('show.job.location')}:</b> #{Addition.to_hashtag(location)}\n"
     text += "<b>#{tag_remote}:</b> #{I18n.t("job.remote.#{remote}")}\n"
-    text += "<b>#{I18n.t('show.job.job_type')}:</b> #{to_hashtag(I18n.t("job.job_type.#{job_type}"))}\n"
+    text += "<b>#{I18n.t('show.job.job_type')}:</b> #{Addition.to_hashtag(I18n.t("job.job_type.#{job_type}"))}\n"
     text += "<b>#{I18n.t('show.job.salary')}:</b> #{salary(true)}\n" if salary
     text += "<b>#{I18n.t('show.job.description')}</b>\n"
     text += "#{description}\n"
