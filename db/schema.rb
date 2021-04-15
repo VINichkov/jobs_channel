@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_154956) do
+ActiveRecord::Schema.define(version: 2021_04_14_085407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,8 +46,6 @@ ActiveRecord::Schema.define(version: 2021_04_14_154956) do
     t.integer "salary_max"
     t.integer "job_type", default: 0, null: false
     t.string "contact"
-    t.string "first_name"
-    t.string "last_name"
     t.index ["fts"], name: "index_jobs_on_fts", using: :gin
   end
 
