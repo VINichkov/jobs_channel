@@ -12,7 +12,7 @@ class SendMessage
         chat_id: Property.find_prop(:admin_chat_id).to_i,
         text: "Error: #{$!}"
       )
-      fail!
+      context.fail!
     end
 
   end

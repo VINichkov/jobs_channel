@@ -48,7 +48,7 @@ class Job < ApplicationRecord
   def to_telegram
     tag_remote = remote=='no' ? I18n.t('show.job.remote') : Addition.to_hashtag(I18n.t('show.job.remote'))
     text = ''
-    text += "<strong>#{title}</b>\n"
+    text += "<strong>#{title}</strong>\n"
     text += "<strong>#{I18n.t('show.job.company')}:</strong> #{company_name}\n"
     text += "<strong>#{I18n.t('show.job.location')}:</strong> #{Addition.to_hashtag(location)}\n"
     text += "<strong>#{tag_remote}:</strong> #{I18n.t("job.remote.#{remote}")}\n"
