@@ -10,7 +10,7 @@ class ApproveJob
       if send.success?
         SendMessage.call(text: 'Yes | No', chat: :chat_id)
       else
-        context.object.to_new
+        context.object.to_new!
       end
     end
   end

@@ -48,20 +48,20 @@ class Job < ApplicationRecord
   def to_telegram
     tag_remote = remote=='no' ? I18n.t('show.job.remote') : Addition.to_hashtag(I18n.t('show.job.remote'))
     text = ''
-    text += "<b>#{title}</b>\n"
-    text += "<b>#{I18n.t('show.job.company')}:</b> #{company_name}\n"
-    text += "<b>#{I18n.t('show.job.location')}:</b> #{Addition.to_hashtag(location)}\n"
-    text += "<b>#{tag_remote}:</b> #{I18n.t("job.remote.#{remote}")}\n"
-    text += "<b>#{I18n.t('show.job.job_type')}:</b> #{Addition.to_hashtag(I18n.t("job.job_type.#{job_type}"))}\n"
-    text += "<b>#{I18n.t('show.job.salary')}:</b> #{salary(true)}\n" if salary
-    text += "<b>#{I18n.t('show.job.description')}</b>\n"
+    text += "<strong>#{title}</b>\n"
+    text += "<strong>#{I18n.t('show.job.company')}:</strong> #{company_name}\n"
+    text += "<strong>#{I18n.t('show.job.location')}:</strong> #{Addition.to_hashtag(location)}\n"
+    text += "<strong>#{tag_remote}:</strong> #{I18n.t("job.remote.#{remote}")}\n"
+    text += "<strong>#{I18n.t('show.job.job_type')}:</strong> #{Addition.to_hashtag(I18n.t("job.job_type.#{job_type}"))}\n"
+    text += "<strong>#{I18n.t('show.job.salary')}:</strong> #{salary(true)}\n" if salary
+    text += "<strong>#{I18n.t('show.job.description')}</strong>\n"
     text += "#{description}\n"
-    text += "<b>#{I18n.t('show.job.contact')}:</b> #{contact}"
+    text += "<strong>#{I18n.t('show.job.contact')}:</strong> #{contact}"
     text
   end
 
   def salary(tag = false)
-    local_tag = tag ? 'salary' : 'salary_tag'
+    local_tag = tag ? 'salary_tag' : 'salary'
     min = salary_min || 0
     max = salary_max || 0
     return I18n.t(local_tag, salary: min) if min != 0 and max == 0
