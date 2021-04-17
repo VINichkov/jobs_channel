@@ -118,4 +118,5 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   config.action_mailer.default_url_options = { host: ENV["host"], port: ENV["port"]}
+  config.telegram_updates_controller.session_store = :file_store,  Rails.root.join('tmp', 'session_store')
 end

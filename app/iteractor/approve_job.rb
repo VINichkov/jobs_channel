@@ -8,7 +8,8 @@ class ApproveJob
       context.object.approve!
       send = SendMessage.call(text: context.object.to_telegram[0..100], chat: :chat_id)
       if send.success?
-        SendMessage.call(text: 'Yes | No', chat: :chat_id)
+        SendMessage.call(text: '<button> </botton>', chat: :chat_id)
+        SendMessage.call(text: '<button> </botton>', chat: :chat_id)
       else
         context.object.to_new!
       end

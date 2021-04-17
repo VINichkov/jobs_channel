@@ -38,6 +38,7 @@ gem "interactor"
 gem 'aasm'
 gem 'after_commit_everywhere'
 gem 'telegram-bot'
+gem 'telegram-bot-types'
 gem 'draper'
 
 group :development, :test do
