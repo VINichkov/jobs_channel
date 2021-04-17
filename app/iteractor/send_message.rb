@@ -11,7 +11,8 @@ class SendMessage
         )
       )
     rescue StandardError
-      Telegram.bot.send_message create_params("Error: #{$ERROR_INFO}")
+      logger.info("Error: #{$ERROR_INFO}")
+      Telegram.bot.send_message( create_params("Error: #{$ERROR_INFO}") )
       context.fail!
     end
 
