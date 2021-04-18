@@ -1,3 +1,4 @@
+Rails.application.routes.default_url_options[:host] = ENV["HOST"]
 Rails.application.routes.draw do
   ##in future
   telegram_webhook TelegramWebhooksController

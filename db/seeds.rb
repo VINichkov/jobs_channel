@@ -41,3 +41,11 @@ if Property.find_by_code(:admin_chat_id).blank?
     description: "The Id of admin's telegram chat"
   )
 end
+
+if Property.find_by_code(:boot_name).blank?
+  Property.create(
+    code: :boot_name,
+    value: 'SystemAnalystBot',
+    description: "Bot's name"
+  )
+end
