@@ -55,7 +55,7 @@ class Job < ApplicationRecord
     text += "<strong>#{I18n.t('show.job.job_type')}:</strong> #{Addition.to_hashtag(I18n.t("job.job_type.#{job_type}"))}\n"
     text += "<strong>#{I18n.t('show.job.salary')}:</strong> #{salary(true)}\n" if salary
     text += "<strong>#{I18n.t('show.job.description')}</strong>\n"
-    text += "#{description}\n"
+    text += "#{description[0..150]}...\n"
     text += "<strong>#{I18n.t('show.job.contact')}:</strong> #{contact}"
     text
   end

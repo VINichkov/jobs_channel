@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   ##in future
-  #telegram_webhook TelegramWebhooksController
+  telegram_webhook TelegramWebhooksController
   resources :jobs
   get 'approve_job/:id', to: 'jobs#approve', as: :approve
 

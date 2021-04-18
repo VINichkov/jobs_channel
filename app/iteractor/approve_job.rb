@@ -7,7 +7,7 @@ class ApproveJob
     if context.object.new?
       context.object.approve!
       send = SendMessage.call(
-        text: context.object.to_telegram[0..100],
+        text: context.object.to_telegram,
         chat: :chat_id,
         keyboard: CommonKeyboard.call( context.url )
       )
