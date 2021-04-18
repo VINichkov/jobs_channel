@@ -5,7 +5,7 @@ class SendMessage
       Telegram.bot.send_message(
         create_params(
           context.text,
-          :chat_id,
+          context.chat,
           'HTML',
           context.keyboard
         )
