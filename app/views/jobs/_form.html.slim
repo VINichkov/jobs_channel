@@ -67,7 +67,8 @@
   .row.mb-3
     .col-12
       = form.label :contact, t('post.form.contact_label'), class: 'form-label'
-      = form.text_field :contact, class: 'form-control', placeholder: t('post.form.contact_placeholder')
+      = form.text_field :contact, class: 'form-control',
+              placeholder: t('post.form.contact_placeholder'), required: true
   .row.mb-3
     .col-12
       = form.submit t('post.form.submit'), class: 'btn btn-primary'

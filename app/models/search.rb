@@ -38,6 +38,7 @@ class Search
     query.push('(salary_min>=:salary or salary_max >= :salary)') if salary.present? and salary > 0
     query.push('location like :location') if location.present?
     query.push('fts @@ to_tsquery(\'english\',:search_key)') if prepare_keys.present?
+    query.push("aasm_state = 'approved'") if query.present?
     query.join(' and ')
   end
 

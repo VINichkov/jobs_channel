@@ -5,6 +5,6 @@ class ButtonCallback < Button
   end
 
   def to_h
-    { text: @text, callback:@callback }
+    { text: @text, callback_data:@callback }
   end
 end

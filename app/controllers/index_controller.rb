@@ -1,7 +1,7 @@
 class IndexController < ApplicationController
 
   def index
-    @jobs = Job.all.order(updated_at: :desc).page( params[:page] )
+    @jobs = Job.where(aasm_state: :approved).order(updated_at: :desc).page( params[:page] )
   end
 
   def main_search
@@ -9,7 +9,7 @@ class IndexController < ApplicationController
     if @search.to_query.present?
       @jobs = Job.search(@search).order(updated_at: :desc, rank: :desc).page( params[:page] )
     else
-      @jobs = Job.all.order(updated_at: :desc).page( params[:page] )
+      @jobs = Job.where(aasm_state: :approved).order(updated_at: :desc).page( params[:page] )
     end
   end
 
