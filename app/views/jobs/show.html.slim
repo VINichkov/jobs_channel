@@ -10,12 +10,12 @@
       p
         strong
           |#{t('show.job.company')}: &nbsp;
-        span.text-success
+        span.text-warning
           = @job.company_name
     p
       strong
         |#{t('show.job.location')}: &nbsp;
-      span.text-info
+      span.text-success
         = @job.location
     p
       strong
@@ -33,6 +33,11 @@
           |#{t('show.job.salary')}: &nbsp;
         span
           =@job.salary
+    p
+      strong
+        | #{t('show.job.posted')}: &nbsp;
+      span
+        = l( @job.date_posted, format: :default )
   .card-body
     h5.text-center
       strong
@@ -42,8 +47,7 @@
   .card-body
     .row
       .d-grid.gap-2.d-md-flex.justify-content-md-center
-        - if @job.contact
-          = link_to t('show.job.apply'), contact(@job.contact), class: 'btn  btn-primary'
+        =contact_tag(@job)
         - if can? :edit, @job and @job.new?
           = link_to t('show.job.edit'), edit_job_path(@job), class: 'btn btn-warning'
         - if can?:approve, @job and @job.new?

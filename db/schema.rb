@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_063254) do
+ActiveRecord::Schema.define(version: 2021_04_23_083502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_063254) do
     t.string "location"
     t.string "source"
     t.string "aasm_state"
-    t.text "description"
+    t.string "description", default: ""
     t.jsonb "tags", default: [], array: true
     t.tsvector "fts"
     t.datetime "created_at", precision: 6, null: false

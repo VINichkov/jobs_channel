@@ -351,6 +351,7 @@ DEPENDENCIES
   figaro
   interactor
   jbuilder (~> 2.7)
+  kaminari
   listen (~> 3.3)
   omniauth
   omniauth-telegram
@@ -368,6 +369,7 @@ DEPENDENCIES
   test-unit
   turbolinks (~> 5)
   tzinfo-data
+  virtus
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)

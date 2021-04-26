@@ -1,0 +1,24 @@
+- if (@search.search_key.present? and @search.location.present?)
+  .row
+    .col-12.text-center
+      =t('search.job_not_found.key_and_location', search_key: @search.search_key,
+              location: @search.location).html_safe
+
+- if @search.search_key.present? and !@search.location.present?
+  .row
+    .col-12.text-center
+      =t('search.job_not_found.key',
+              search_key: @search.search_key).html_safe
+p
+p
+  b
+    =t('search.job_not_found.suggestion_title') + ':'
+ul
+  li
+    =t('search.job_not_found.suggestions.keywords')
+  li
+    =t('search.job_not_found.suggestions.spelling')
+  li
+    =t('search.job_not_found.suggestions.abbreviations')
+
+

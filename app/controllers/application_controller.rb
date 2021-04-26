@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
 
+  before_action :init_search
+  if ENV["RAILS_ENV"] == 'production'
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    rescue_from CanCan::AccessDenied, with: :not_found
+    rescue_from ArgumentError, with: :not_found
+  end
+
   #around_action  :switch_locale
 
   protect_from_forgery with: :exception
@@ -34,5 +41,14 @@ class ApplicationController < ActionController::Base
   def extract_locale_from_accept_language_header
     request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
   end
+
+  def init_search
+    @search = Search.new
+  end
+
+  def not_found
+    render 'errors/not_found', status: :not_found, formats: :html
+  end
+
 
 end

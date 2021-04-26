@@ -1,0 +1,2 @@
+li[class = "page-item #{current_page.first? ? 'disabled' : nil}"]
+  =link_to(t('views.pagination.previous'), url, rel: 'prev', class: 'page-link')

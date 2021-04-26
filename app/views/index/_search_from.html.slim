@@ -1,0 +1,38 @@
+.navbar.navbar-expand-md
+  .navbar-collapse.collapse#search_panel
+    .card.text-dark.bg-light.mb-3.w-100
+      .card-body
+        = form_with(model: search, method: :get, url: search_path) do |form|
+          .row
+            .col-12.col-md-6.mb-3
+              .input-group
+                span.input-group-text
+                  = render "svg/search"
+                = form.text_field :search_key, class: 'form-control', placeholder: t('post.form.title_placeholder')
+            .col-12.col-md-6.mb-3
+              .input-group
+                span.input-group-text
+                  = render "svg/geo-alt"
+                = form.text_field :location, class: 'form-control', placeholder: t('post.form.location_placeholder')
+          .row
+            .col-12.col-md-4.mb-3
+              = form.label :remote, t('post.form.remote_label'), class: 'form-label'
+              = form.collection_select :remote,
+                      Search.remotes.map { |a| [a.last, t("job.remote.#{a.first}")] },
+                      :first, :second, {}, { class: 'form-select' }
+            .col-12.col-md-4.mb-3
+              = form.label :job_type, t('post.form.job_type_label'), class: 'form-label'
+              = form.collection_select :job_type,
+                      Search.job_types.map { |a| [a.last,t("job.job_type.#{a.first}")] },
+                      :first, :second, {}, { class: 'form-select' }
+            .col-12.col-md-4.mb-3
+              = form.label :salary, t('post.form.est_salary'), class: 'form-label'
+              .input-group
+                span.input-group-text
+                  = t('money')
+                = form.text_field :salary,
+                        type: 'number', min: '1', step: 'any',
+                        class: 'form-control', placeholder: t('post.form.salary_min_placeholder')
+          .row.mb-3
+            .col-12.d-flex.justify-content-end
+              = form.submit t('search.job.submit'), class: 'btn btn-primary'

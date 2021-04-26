@@ -1,11 +1,19 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-  .container.justify-content-between.align-content-center
-    .d-none.d-sm-none.d-md-inline
-      a.navbar-brand href=root_path
-        = brand_tag('logo.svg')
-    .collapse.navbar-collapse.ms-auto.d-flex
-      ul.navbar-nav.justify-content-end.ms-auto
+nav.navbar.navbar-dark.bg-primary
+  .container
+      .d-none.d-sm-none.d-md-inline
+        a.navbar-brand href=root_path
+          = brand_tag('logo.svg')
+      .d-block.d-sm-block.d-md-none
+        button.btn.btn-outline-light[type='button'
+          data-bs-toggle='collapse' data-bs-target='#search_panel'
+          aria-controls='navbarToggleExternalContent'
+          aria-expanded='false' aria-label='Toggle navigation']
+          =render 'svg/search'
+      .d-block.d-sm-block.d-md-none
+        .text-light
+          = brand_tag('logo.svg')
+      ul.navbar-nav
         li.nav-item
           a.btn.btn-outline-light href=new_job_path rel='nofollow'
             =  t('post.job')
-      -# render ('header/components/user_drop_menu')
+        -# render ('header/components/user_drop_menu')

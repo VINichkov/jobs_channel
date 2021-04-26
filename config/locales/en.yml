@@ -30,6 +30,12 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  date:
+    formats:
+      default: "%b %d %Y"
+  page_not_found:
+    oops: Oops!
+    text: Sorry, the page you are looking for does not exist or has been moved elsewhere. If you keep ending up here, please head back to our homepage
   salary: "$%{salary}"
   salary_tag: "#%{salary}_usd"
   money: $
@@ -44,6 +50,7 @@ en:
       'yes': 'Yes'
   show:
     job:
+      posted: Posted
       job_details: Job details
       company: Company
       location: Location
@@ -51,11 +58,13 @@ en:
       job_type: Job type
       salary: Salary
       description: Job description
-      apply: Click to contact via Telegram
+      apply_telegram: Click to contact via Telegram
+      apply: Apply
       contact: Contact
       approve: Approve
       destroy: Destroy
       edit:  Edit
+      more: More...
   post:
     job: Post job
     form:
@@ -67,15 +76,18 @@ en:
       location_label: Location
       location_placeholder: San Francisco
       job_type_label: Job type
+      est_salary: Salary Estimate
       job_type:
         full_time: Full time
         part_time: Part time
         casual: Casual/Temporary
         permanent: Permanent
+        any: Any
       remote_label: Remote
       remote:
           no: No
           yes: Yes
+          any: Any
       salary_min_label: From
       salary_min_placeholder: 160000
       salary_max_label: To
@@ -91,6 +103,17 @@ en:
       contact_label: Telegram contact
       contact_placeholder: "@SYS_ANALYST_USA"
       submit: Post Job
+  search:
+    job:
+      submit: Find jobs
+    job_not_found:
+      key: "The search <strong>%{search_key}</strong> did not match any jobs"
+      key_and_location: "The search <strong>%{search_key}</strong> in <strong>%{location}</strong>  did not match any jobs"
+      suggestion_title: Search suggestions
+      suggestions:
+        keywords: Try more general keywords
+        spelling: Check your spelling
+        abbreviations: Replace abbreviations with the entire word
   posted:
     job:
       success: Your ad was successfully created.
@@ -164,3 +187,20 @@ en:
       nothing: Nothing to remind
     start:
       content: Hi there!
+  #kaminari
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: Previous
+      next: Next
+      truncate: "&hellip;"
+    helpers:
+      page_entries_info:
+        one_page:
+          display_entries:
+            zero: "No %{entry_name} found"
+            one: "Displaying <b>1</b> %{entry_name}"
+            other: "Displaying <b>all %{count}</b> %{entry_name}"
+        more_pages:
+          display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"

@@ -1,0 +1,8 @@
+- if @jobs.present?
+  = render partial: 'jobs/job',  collection: @jobs
+  .row
+    .col-12.d-flex.justify-content-center
+      = paginate @jobs
+- if @jobs.blank?
+  = render 'search_not_found'
+

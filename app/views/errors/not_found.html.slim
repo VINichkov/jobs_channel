@@ -1,0 +1,6 @@
+h1.text-center
+  =t('page_not_found.oops')
+.text-center
+  |#{t('page_not_found.text')} &nbsp;
+  =link_to Property.find_prop(:title), root_path
+br /

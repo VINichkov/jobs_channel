@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'index#index'
+  get 'search', to: 'index#main_search'
 
-  #Admin controllers
+  get '*path', to: 'errors#error_404', via: :all
 
 end

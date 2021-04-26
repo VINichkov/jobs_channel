@@ -2,12 +2,22 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
 
+  use_session!
+
   def start!(*)
     respond_with :message, text: t('.content')
   end
 
   def help!(*)
     respond_with :message, text: t('.content')
+  end
+
+  def write!(text = nil, *)
+    session[:text] = text
+  end
+
+  def read!(*)
+    respond_with :message, text: session[:text]
   end
 
   def memo!(*args)

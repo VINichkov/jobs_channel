@@ -7,9 +7,4 @@ module ApplicationHelper
   end
 
 
-  def contact(contact)
-    unless contact =~ /http/
-      'https://t.me/' + contact.gsub('@','')
-    end
-  end
 end

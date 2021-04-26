@@ -40,6 +40,8 @@ gem 'after_commit_everywhere'
 gem 'telegram-bot'
 gem 'telegram-bot-types'
 gem 'draper'
+gem 'virtus'
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

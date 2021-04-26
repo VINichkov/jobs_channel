@@ -1,0 +1,5 @@
+module Emoji
+  LIKE = "\xF0\x9F\x91\x8D"
+  SHARE = "\xF0\x9F\x93\xA3"
+  VIEW = "\xF0\x9F\x91\x80"
+end

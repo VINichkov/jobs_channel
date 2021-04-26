@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'date'
+
 class Job < ApplicationRecord
 
   enum job_type: { full_time: 0, part_time: 1, casual: 2, permanent: 3 }
@@ -32,6 +34,10 @@ class Job < ApplicationRecord
   def to_new;  end
 
   def reject; end
+
+  def date_posted
+    updated_at.to_date()
+  end
 
   def to_hash
     {title: title,
@@ -68,6 +74,18 @@ class Job < ApplicationRecord
     return I18n.t(local_tag, salary: max) if min == 0 and max != 0
     return nil if min == 0 and max == 0
     "#{I18n.t(local_tag, salary: min)} - #{I18n.t(local_tag, salary: max)}"
+  end
+
+  def self.search(search_params)
+    query = search_params.to_query
+    logger.debug("Query:: #{query}")
+    params = search_params.to_h
+    logger.debug("Params:: #{params.to_s}")
+    return self.all if query.blank?
+    mode = "ARRAY['phrase', 'plain', 'none']"
+    select(:id, :title, :company_name, :remote, :location, :description, :tags, :updated_at,
+           :salary_min, :salary_max, :job_type, :contact,
+           "user_rank(fts, '#{params[:search_key]}', '#{params[:search_key]}', #{mode}) AS \"rank\"").where(query, params)
   end
 
 end

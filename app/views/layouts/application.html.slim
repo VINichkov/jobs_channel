@@ -20,6 +20,7 @@ html
           .row
             .offset-lg-2.col-lg-8.offset-md-0.col-md-12
               = render('inc/alert', alert: alert, notice: notice) if alert || notice
+              = render('index/search_from', search: @search)
               = yield
 
       footer.footer.navbar.navbar-expand-lg.navbar-dark.bg-dark.mt-5

@@ -1,0 +1,29 @@
+.card.mb-3
+  .card-body
+    h5
+      strong
+        = link_to job.title, job_path(job), class:'text-capitalize simple_text'
+    div
+      span.text-success.te
+        = job.company_name
+      span
+        | &nbsp; - &nbsp;
+      span.text-warning
+        = job.location
+    div
+      span
+        =t("job.job_type.#{job.job_type}")
+      - if  job.remote == 'yes'
+        span
+          | &nbsp; - &nbsp; #{t('show.job.remote')}
+    div
+      = job.salary
+    div
+      = simple_format(job.description[0..100] + '...')
+    .small.text-info.mb-3
+      = l( job.date_posted, format: :default )
+    .d-grid.gap-2.d-md-flex.justify-content-md-end
+      = contact_tag( job )
+      = link_to t('show.job.more'), job_path(job), class: 'btn btn-light', role: 'button'
+
+

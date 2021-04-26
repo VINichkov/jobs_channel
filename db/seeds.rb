@@ -49,3 +49,5 @@ if Property.find_by_code(:boot_name).blank?
     description: "Bot's name"
   )
 end
+
+Job.where(description: nil).update_all(description: '')
