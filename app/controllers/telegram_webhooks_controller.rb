@@ -63,6 +63,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def callback_query(data)
+    Rails.logger.info(data)
     if data == 'alert'
       answer_callback_query t('.alert'), show_alert: true
     else
