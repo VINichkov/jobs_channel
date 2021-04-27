@@ -1,4 +1,4 @@
 module Callbacks
-  LIKE = '14'
+  LIKE = '{"like": "main", "count": 0, "text": "like"}'
 
 end
