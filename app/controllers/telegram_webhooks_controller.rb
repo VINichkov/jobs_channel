@@ -63,7 +63,6 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def callback_query(data)
-    query data
     Rails.logger.info('-----callback_query------')
     Rails.logger.info(data)
     Rails.logger.info('>>---callback_query----<<')
