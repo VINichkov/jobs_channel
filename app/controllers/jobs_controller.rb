@@ -58,8 +58,8 @@ class JobsController < InheritedResources::Base
   private
 
   def job_params
-    params.require(:job).permit(:title, :company_name, :remote, :type, :location, :salary_min, :salary_max,
-                                :contact, :description, :job_type, :contract)
+    params.require(:job).permit(:title, :company_name, :remote, :location, :salary_min, :salary_max,
+                                :contact, :description, :job_type)
   end
 
   def set_job

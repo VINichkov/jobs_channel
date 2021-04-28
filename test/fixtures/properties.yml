@@ -1,0 +1,21 @@
+
+title:
+  code: title
+  value: \@SYS
+  description: Title
+
+chat_id:
+  code: chat_id
+  value: -1232132131
+  description: The Id of telegram chat
+
+admin_chat_id:
+  code: admin_chat_id
+  value: -123213212342
+  description: The Id of admin's telegram chat
+
+boot_name:
+  code: boot_name
+  value: SystemAnalyst
+  description: Bot's name
+

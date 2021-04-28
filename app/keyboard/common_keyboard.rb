@@ -1,12 +1,13 @@
 class CommonKeyboard
 
-  def self.call(url, title = nil)
+  def self.call(url, title: nil, callback: nil)
     kb = Keyboard.new
     row_one = Row.new
     row_two = Row.new
+    callback ||= Callbacks::Like.new
     row_one.add_button ButtonCallback.new(
-      Emoji::LIKE,
-      Callbacks::LIKE
+      callback.to_text,
+      callback.to_callback
     )
     row_one.add_button ButtonUrl.new(
       Emoji::SHARE,

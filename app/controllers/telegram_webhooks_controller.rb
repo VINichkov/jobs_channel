@@ -1,7 +1,6 @@
 #in future
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
-  include  Telegram::Bot::UpdatesController::CallbackQueryContext
 
   use_session!
 
@@ -64,23 +63,19 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def callback_query(data)
+    query data
     Rails.logger.info('-----callback_query------')
     Rails.logger.info(data)
     Rails.logger.info('>>---callback_query----<<')
-    if data == 'alert'
+    case data
+    when Callbacks::Like.is_my_action?(data)
       answer_callback_query t('.alert'), show_alert: true
     else
       answer_callback_query t('.no_alert')
     end
   end
 
-  def like_callback_query(data)
-    Rails.logger.info('-----like_callback_query------')
-    Rails.logger.info(data)
-    Rails.logger.info('>>---like_callback_query----<<')
-    answer_callback_query data, show_alert: true
-  end
-
+=begin
   def inline_query(query, _offset)
     query = query.first(10) # it's just an example, don't use large queries.
     t_description = t('.description')
@@ -123,5 +118,11 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       respond_with :message,
                    text: t('telegram_webhooks.action_missing.command', command: action_options[:command])
     end
+  end
+=end
+  private
+
+  def callback_like(data)
+
   end
 end
