@@ -62,9 +62,9 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     }
   end
 
-  def callback_query(data)
+    def callback_query(data, params)
     Rails.logger.info('-----callback_query------')
-    Rails.logger.info(data.class)
+    Rails.logger.info(params)
     Rails.logger.info('>>---callback_query----<<')
     case
     when Callbacks::Like.is_my_action?(data)
@@ -119,9 +119,4 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     end
   end
 =end
-  private
-
-  def callback_like(data)
-
-  end
-end
+ end
