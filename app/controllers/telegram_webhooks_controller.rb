@@ -64,9 +64,9 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def callback_query(data)
     Rails.logger.info('-----callback_query------')
-    Rails.logger.info(data)
+    Rails.logger.info(data.class)
     Rails.logger.info('>>---callback_query----<<')
-    case data
+    case
     when Callbacks::Like.is_my_action?(data)
       answer_callback_query t('.alert'), show_alert: true
     else
