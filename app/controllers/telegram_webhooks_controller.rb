@@ -2,7 +2,6 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
 
-
   use_session!
 
   def start!(*)
@@ -51,75 +50,20 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     end
   end
 
-  def inline_keyboard!(*)
-    respond_with :message, text: t('.prompt'), reply_markup: {
-      inline_keyboard: [
-        [
-          {text: t('.alert'), callback_data: 'alert'},
-          {text: t('.no_alert'), callback_data: 'no_alert'},
-        ],
-        [{text: t('.repo'), url: 'https://github.com/telegram-bot-rb/telegram-bot'}],
-      ],
-    }
-  end
-
   def callback_query(data)
-
-    Rails.logger.info('-----callback_query------')
-    Rails.logger.info(data)
-    Rails.logger.info(payload.to_json)
-    Rails.logger.info('>>---callback_query----<<')
-    case
-    when Callbacks::Like.is_my_action?(data)
-      answer_callback_query t('.alert'), show_alert: true
-    else
-      answer_callback_query t('.no_alert')
-    end
+    begin
+      method = JSON.parse(data, opts={symbolize_names:true})
+      callback_name = "#{method[:action]}_callback_query".to_sym
+      send callback_name, data
+   rescue
+      Rails.logger.error("Error: #{$!}")
+      answer_callback_query 'Error'
+    nd
   end
 
-=begin
-  def inline_query(query, _offset)
-    query = query.first(10) # it's just an example, don't use large queries.
-    t_description = t('.description')
-    t_content = t('.content')
-    results = Array.new(5) do |i|
-      {
-        type: :article,
-        title: "#{query}-#{i}",
-        id: "#{query}-#{i}",
-        description: "#{t_description} #{i}",
-        input_message_content: {
-          message_text: "#{t_content} #{i}",
-        },
-      }
-    end
-    answer_inline_query results
-  end
+  private
 
-  # As there is no chat id in such requests, we can not respond instantly.
-  # So we just save the result_id, and it's available then with `/last_chosen_inline_result`.
-  def chosen_inline_result(result_id, _query)
-    session[:last_chosen_inline_result] = result_id
+  def like_callback_query(data)
+    answer_callback_query t('.alert')
   end
-
-  def last_chosen_inline_result!(*)
-    result_id = session[:last_chosen_inline_result]
-    if result_id
-      respond_with :message, text: t('.selected', result_id: result_id)
-    else
-      respond_with :message, text: t('.prompt')
-    end
-  end
-
-  def message(message)
-    respond_with :message, text: t('.content', text: message['text'])
-  end
-
-  def action_missing(action, *_args)
-    if action_type == :command
-      respond_with :message,
-                   text: t('telegram_webhooks.action_missing.command', command: action_options[:command])
-    end
-  end
-=end
  end
