@@ -5,6 +5,10 @@ class CommonKeyboard
     row_one = Row.new
     row_two = Row.new
     callback ||= Callbacks::Like.new
+    Rails.logger.info('------ CommonKeyboard ------')
+    Rails.logger.info(callback.to_callback)
+    Rails.logger.info(to_text)
+    Rails.logger.info('------ CommonKeyboard ------')
     row_one.add_button ButtonCallback.new(
       callback.to_text,
       callback.to_callback
