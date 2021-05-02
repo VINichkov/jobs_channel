@@ -7,7 +7,7 @@ module Callbacks
         begin
           params = JSON.parse(text, opts={symbolize_names:true})
           @action = params[:action]
-          @count = params[:count] + 1
+          @count = params[:count]
           @text = @count > 0 ? Emoji::LIKE + " #{@count}" : Emoji::LIKE
           @id = params[:id]
         rescue
@@ -16,6 +16,14 @@ module Callbacks
       else
         @count, @action, @text, @id  = 0, LIKE, Emoji::LIKE, id
       end
+    end
+
+    def like
+      @count -=1
+    end
+
+    def dislike
+      @count +=1
     end
 
     def to_callback
