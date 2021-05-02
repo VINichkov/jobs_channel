@@ -18,6 +18,9 @@ class CommonKeyboard
       url
     )
     kb.add_rows( [row_one, row_two] )
+    Rails.logger.info('---- CommonKeyboard --------')
+    Rails.logger.info(kb.to_telegram)
+    Rails.logger.info('---- CommonKeyboard --------')
     kb.to_telegram
   end
 
