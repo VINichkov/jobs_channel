@@ -64,7 +64,15 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   private
 
   def like_callback_query(data)
-    answer_callback_query t('.alert')
+    edit_message(:text)
+  end
+
+
+  def edit_message(type, **params)
+    super
+    if type == :text && params[:text]
+      answer_callback_query params[:text]
+    end
   end
 
  end
