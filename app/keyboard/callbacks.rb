@@ -5,10 +5,11 @@ module Callbacks
     def initialize(text = nil, id: nil)
       if text.present?
         begin
+          params = JSON.parse(text, opts={symbolize_names:true})
           @action = params[:action]
           @count = params[:count] + 1
           @text = @count > 0 ? Emoji::LIKE + " #{@count}" : Emoji::LIKE
-          @id= params[:id]
+          @id = params[:id]
         rescue
           Rails.logger.error("Like::Error: initialize text = #{text} : text error #{$!} ")
         end
