@@ -1,34 +1,26 @@
 module Callbacks
   class Like
     LIKE = 'like'
-    def initialize(text = nil)
+    attr_reader :text, :url
+    def initialize(text = nil, url:)
       if text.present?
         begin
-          Rails.logger.info("Like params #{text}")
-          params = JSON.parse(text, opts={symbolize_names:true})
-          Rails.logger.info("Like parsed params #{params.to_s}")
           @action = params[:action]
           @count = params[:count] + 1
           @text = @count > 0 ? Emoji::LIKE + " #{@count}" : Emoji::LIKE
+          @url= params[:url]
         rescue
           Rails.logger.error("Like::Error: initialize text = #{text} : text error #{$!} ")
         end
       else
-        @count = 0
-        @action = LIKE
-        @text = Emoji::LIKE
+        @count, @action, @text, @url   = 0, LIKE, Emoji::LIKE, url
       end
     end
 
     def to_callback
-      {action: @action, count: @count, text: @text}.to_json
-    end
-
-    def to_text
-      @text
+      {action: @action, count: @count, text: @text, url: @url}.to_json
     end
 
   end
-
 
 end

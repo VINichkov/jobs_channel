@@ -1,21 +1,17 @@
 class CommonKeyboard
 
-  def self.call(url, title: nil, callback: nil)
+  def self.call(url = nil, callback: nil)
     kb = Keyboard.new
-    row_one = Row.new
-    row_two = Row.new
-    callback ||= Callbacks::Like.new
-    Rails.logger.info('------ CommonKeyboard ------')
-    Rails.logger.info(callback.to_callback)
-    Rails.logger.info(callback.to_text)
-    Rails.logger.info('------ CommonKeyboard ------')
+    row_one, row_two = Row.new, Row.new
+    callback ||= Callbacks::Like.new(url: url)
+    url ||= callback.url
     row_one.add_button ButtonCallback.new(
-      callback.to_text,
+      callback.text,
       callback.to_callback
     )
     row_one.add_button ButtonUrl.new(
       Emoji::SHARE,
-      self.url_for_share(url, title)
+      self.url_for_share(url, nil)
     )
     row_two.add_button ButtonUrl.new(
       "View #{Emoji::VIEW}",
