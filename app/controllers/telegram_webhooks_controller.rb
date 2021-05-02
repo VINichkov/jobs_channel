@@ -55,10 +55,10 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       method = JSON.parse(data, opts={symbolize_names:true})
       callback_name = "#{method[:action]}_callback_query".to_sym
       send callback_name, data
-   rescue
+    rescue
       Rails.logger.error("Error: #{$!}")
       answer_callback_query 'Error'
-    nd
+    end
   end
 
   private
@@ -66,4 +66,5 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   def like_callback_query(data)
     answer_callback_query t('.alert')
   end
+
  end
