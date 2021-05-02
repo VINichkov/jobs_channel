@@ -4,7 +4,9 @@ module Callbacks
     def initialize(text = nil)
       if text.present?
         begin
+          Rails.logger.info("Like params #{text}")
           params = JSON.parse(text, opts={symbolize_names:true})
+          Rails.logger.info("Like parsed params #{params.to_s}")
           @action = params[:action]
           @count = params[:count]
           @text = @count > 0 ? Emoji::LIKE + " #{@count}" : Emoji::LIKE
