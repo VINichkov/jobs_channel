@@ -26,11 +26,6 @@ module Callbacks
       @text
     end
 
-    def self.is_my_action?(data)
-      params = JSON.parse(data, opts={symbolize_names:true})
-      params.is_a?(Hash) && params[:action] == LIKE
-    end
-
   end
 
 

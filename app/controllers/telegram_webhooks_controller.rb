@@ -64,15 +64,14 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   private
 
   def like_callback_query(data)
-    edit_message(:text)
+    markup = CommonKeyboard.call('https://vk.com', callback: Callbacks::Like.new(data))
+    edit_message(:replymarkup, markup)
   end
 
 
   def edit_message(type, **params)
-    super
-    if type == :text && params[:text]
-      answer_callback_query params[:text]
-    end
+    super(type, params)
+    answer_callback_query 'Поехали'
   end
 
  end
