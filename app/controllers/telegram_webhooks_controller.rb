@@ -72,9 +72,8 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     reaction = UserAction.click_on_line(payload["from"].to_hash.symbolize_keys!)
     callback = Callbacks::Like.new(data)
     callback.send reaction
-    text = t(reaction)
-    markup = CommonKeyboard.call( callback: Callbacks::Like.new(data))
-    edit_message(:reply_markup, text: text, reply_markup: markup)
+    markup = CommonKeyboard.call( callback: callback)
+    edit_message(:reply_markup, text: t(reaction), reply_markup: markup)
   end
 
 
