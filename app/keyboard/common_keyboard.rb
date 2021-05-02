@@ -1,10 +1,12 @@
 class CommonKeyboard
+  include Rails.application.routes.url_helpers
 
-  def self.call(url = nil, callback: nil)
+  def self.call(job_id: nil, callback: nil)
+
     kb = Keyboard.new
     row_one, row_two = Row.new, Row.new
-    callback ||= Callbacks::Like.new(url: url)
-    url ||= callback.url
+    callback ||= Callbacks::Like.new(id: job_id)
+    url = job_url(job_id ||callback.id)
     row_one.add_button ButtonCallback.new(
       callback.text,
       callback.to_callback
@@ -28,6 +30,10 @@ class CommonKeyboard
     query = {url: url}
     query[:title] = title if title
     "https://t.me/share/url?" + query.to_query
+  end
+
+  def rout
+    (5)
   end
 
 end

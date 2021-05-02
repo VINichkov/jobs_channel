@@ -34,7 +34,7 @@ class JobsController < InheritedResources::Base
   end
 
   def approve
-    ApproveJob.call(object: @job, url: job_url)
+    ApproveJob.call(object: @job)
     respond_to do |format|
       format.html { redirect_to job_path, notice: t('approve.job.success')  }
     end
