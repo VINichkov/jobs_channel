@@ -1,7 +1,7 @@
 #in future
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
-  include Telegram::Bot::UpdatesController::CallbackQueryContext
+
 
   use_session!
 
@@ -63,13 +63,19 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     }
   end
 
-  def action_callback_query(data)
+  def callback_query(data)
+
     Rails.logger.info('-----callback_query------')
     Rails.logger.debug(data)
+    Rails.logger.debug(params.to_hash.to_s)
     Rails.logger.info('>>---callback_query----<<')
-    answer_callback_query t('.alert'), show_alert: true
+    case
+    when Callbacks::Like.is_my_action?(data)
+      answer_callback_query t('.alert'), show_alert: true
+    else
+      answer_callback_query t('.no_alert')
+    end
   end
-
 
 =begin
   def inline_query(query, _offset)
