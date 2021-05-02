@@ -1,4 +1,4 @@
-class UserAction< ActiveRecord::Migration[6.1]
+class AddModelUserAction< ActiveRecord::Migration[6.1]
   def change
     create_table :user_actions do |t|
       t.integer :action, null: false
