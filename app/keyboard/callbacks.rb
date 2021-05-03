@@ -8,7 +8,7 @@ module Callbacks
           params = JSON.parse(text, opts={symbolize_names:true})
           @action = params[:action]
           @count = params[:count]
-          @text = @count > 0 ? Emoji::LIKE + " #{@count}" : Emoji::LIKE
+          @text = params[:text]
           @id = params[:id]
         rescue
           Rails.logger.error("Like::Error: initialize text = #{text} : text error #{$!} ")
@@ -27,7 +27,10 @@ module Callbacks
     end
 
     def to_callback
-      {action: @action, count: @count, text: @text, id: @id}.to_json
+      {action: @action,
+       count: @count,
+       text: @count > 0 ? Emoji::LIKE + " #{@count}" : Emoji::LIKE,
+       id: @id}.to_json
     end
 
   end

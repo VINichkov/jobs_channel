@@ -68,9 +68,14 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       callback: Callbacks::Like.new(data),
       payload: payload
     )
-    edit_message(:reply_markup,
-                 text: t(service_click.reaction), reply_markup: service_click.markup)
+    edit_message(
+      :reply_markup,
+      text: t(service_click.reaction, emoji: Emoji::LIKE),
+      reply_markup: service_click.markup
+    )
   end
+
+
 
 
   def edit_message(type, **params)
