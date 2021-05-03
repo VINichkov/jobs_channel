@@ -19,11 +19,11 @@ module Callbacks
     end
 
     def like
-      @count -=1
+      @count +=1
     end
 
     def dislike
-      @count +=1
+      @count -=1
     end
 
     def to_callback
