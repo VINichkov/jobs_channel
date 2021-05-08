@@ -23,8 +23,7 @@ module.exports = function(api) {
           targets: {
             node: 'current'
           },
-          modules: 'commonjs',
-          loose: true
+          modules: 'commonjs'
         },
         '@babel/preset-react'
       ],
@@ -35,8 +34,7 @@ module.exports = function(api) {
           useBuiltIns: 'entry',
           corejs: 3,
           modules: false,
-          exclude: ['transform-typeof-symbol'],
-          loose: true
+          exclude: ['transform-typeof-symbol']
         }
       ],
       [
@@ -53,10 +51,7 @@ module.exports = function(api) {
       isTestEnv && 'babel-plugin-dynamic-import-node',
       '@babel/plugin-transform-destructuring',
       [
-        '@babel/plugin-proposal-class-properties',
-        {
-          loose: true
-        }
+        '@babel/plugin-proposal-class-properties'
       ],
       [
         '@babel/plugin-proposal-object-rest-spread',
