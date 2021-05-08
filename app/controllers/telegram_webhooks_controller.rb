@@ -52,7 +52,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def callback_query(data)
     begin
-      method = JSON.parse(data, opts={symbolize_names:true})
+      method = JSON.parse( data, opts = { symbolize_names:true } )
       callback_name = "#{method[:action]}_callback_query".to_sym
       send callback_name, data
     rescue

@@ -9,6 +9,7 @@
 .bundle
 /.idea
 .idea
+/coverage/*
 # Ignore the default SQLite database.
 
 # Ignore all logfiles and tempfiles.

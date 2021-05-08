@@ -1,0 +1,12 @@
+
+first:
+  id: 1
+  action: 0
+  id_message: 1
+  id_user: 1
+  is_bot: false
+  first_name: Stiv
+  last_name: Accles
+  username: stiv_accles
+  language_code: en
+  value: like
