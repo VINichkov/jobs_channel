@@ -23,7 +23,8 @@ module.exports = function(api) {
           targets: {
             node: 'current'
           },
-          modules: 'commonjs'
+          modules: 'commonjs',
+          loose: true
         },
         '@babel/preset-react'
       ],
@@ -34,7 +35,8 @@ module.exports = function(api) {
           useBuiltIns: 'entry',
           corejs: 3,
           modules: false,
-          exclude: ['transform-typeof-symbol']
+          exclude: ['transform-typeof-symbol'],
+          loose: true
         }
       ],
       [
