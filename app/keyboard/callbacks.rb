@@ -20,18 +20,26 @@ module Callbacks
 
     def like
       @count +=1
+      update_text
     end
 
     def dislike
       @count -=1
+      update_text
     end
 
     def to_callback
       {action: @action,
        count: @count,
-       text: @count > 0 ? Emoji::LIKE + " #{@count}" : Emoji::LIKE,
+       text: @text,
        id: @id
       }.to_json
+    end
+
+    private
+
+    def update_text
+      @text = @count > 0 ? Emoji::LIKE + " #{@count}" : Emoji::LIKE
     end
 
   end
