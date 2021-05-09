@@ -1,9 +1,10 @@
 module JobsHelper
   def contact_normalize(contact)
     contact = contact.strip
-    unless contact =~ /http/
-      'https://t.me/' + contact.gsub('@','')
+    unless contact[0..3] == 'http'
+      contact = 'https://t.me/' + contact.gsub('@','')
     end
+    contact
   end
 
   def contact_tag(job)
