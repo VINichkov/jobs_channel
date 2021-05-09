@@ -5,7 +5,7 @@
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
-import pell from 'pell'
+// import pell from 'pell'
 import * as ActiveStorage from "@rails/activestorage"
 // import 'bootstrap/js/src/alert'
 // import 'bootstrap/js/src/button'
