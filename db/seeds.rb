@@ -50,4 +50,36 @@ if Property.find_by_code(:boot_name).blank?
   )
 end
 
-Job.where(description: nil).update_all(description: '')
+if Property.find_by_code(:proxy).blank?
+  Property.create(
+    code: :proxy,
+    value: 'https://ancient-ridge-73891.herokuapp.com/',
+    description: "Proxy"
+  )
+end
+
+if Property.find_by_code(:locations).blank?
+  Property.create(
+    code: :locations,
+    value: ['San Francisco', 'Seattle', 'Portland', 'San Jose', 'Los Angeles',
+            'San Diego', 'Phoenix', 'Denver', 'Austin', 'Dallas', 'Minneapolis', 'Houston', 'Chicago',
+            'Detroit', 'Atlanta', 'Boston', 'New York', 'Philadelphia', 'Baltimore', 'Washington, DC'],
+    description: "Location for crawling"
+  )
+end
+
+if Property.find_by_code(:job_board).blank?
+  Property.create(
+    code: :job_board,
+    value: 'https://www.indeed.com/jobs?',
+    description: "The job board for initial crawling"
+  )
+end
+
+if Property.find_by_code(:key_for_search).blank?
+  Property.create(
+    code: :key_for_search,
+    value: 'Systems Analyst',
+    description: "The key for search by a job board"
+  )
+end

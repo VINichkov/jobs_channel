@@ -61,8 +61,7 @@ class Job < ApplicationRecord
     text += "<strong>#{I18n.t('show.job.job_type')}:</strong> #{Addition.to_hashtag(I18n.t("job.job_type.#{job_type}"))}\n"
     text += "<strong>#{I18n.t('show.job.salary')}:</strong> #{salary(true)}\n" if salary
     text += "<strong>#{I18n.t('show.job.description')}</strong>\n"
-    text += "#{description[0..150]}...\n"
-    text += "<strong>#{I18n.t('show.job.contact')}:</strong> #{contact}"
+    text += "#{description_text[0..150]}...\n"
     text
   end
 
@@ -86,6 +85,10 @@ class Job < ApplicationRecord
     select(:id, :title, :company_name, :remote, :location, :description, :tags, :updated_at,
            :salary_min, :salary_max, :job_type, :contact,
            "user_rank(fts, '#{params[:search_key]}', '#{params[:search_key]}', #{mode}) AS \"rank\"").where(query, params)
+  end
+
+  def description_text
+    description.gsub(/<span>|<\/span>|<\/div>|<ul>|<\/ul>|<\/li>|<\/p>|<li>|<br>|<div>|<h1>|<h2>|<h3>|<h4>|<b>|<\/h1>|<\/h2>|<\/h3>|<\/h4>|<\/b>|<p>/," ").squish
   end
 
 end

@@ -1,6 +1,7 @@
 class SendMessage
   include Interactor
   def call
+    Rails.logger.debug(context.keyboard)
     begin
       Telegram.bot.send_message(
         create_params(
@@ -11,8 +12,8 @@ class SendMessage
         )
       )
     rescue StandardError
-      Rails.logger.info("Error: #{$ERROR_INFO}")
-      Telegram.bot.send_message( create_params("Error: #{$ERROR_INFO}") )
+      Rails.logger.error("Error SendMessage: #{$!}")
+      Telegram.bot.send_message( create_params("Error: #{$!}") )
       context.fail!
     end
   end

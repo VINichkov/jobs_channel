@@ -9,11 +9,6 @@ class ClickOnLike
   private
   def params
     params = context.payload["from"].to_hash.symbolize_keys!
-    Rails.logger.info '----- ClickOnLike---- '
-    Rails.logger.info context.payload
-    Rails.logger.info '----- ClickOnLike---- '
-    Rails.logger.info params
-    Rails.logger.info '----- ClickOnLike---- '
     params[:action] = :like
     params[:id_user] = params[:id]
     params[:id_message] = context.payload["message"]["message_id"]

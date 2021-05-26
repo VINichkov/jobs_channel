@@ -68,10 +68,6 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       callback: Callbacks::Like.new(data),
       payload: payload
     )
-    Rails.logger.info '----- like_callback_query---- '
-    Rails.logger.info service_click.reaction
-    Rails.logger.info service_click.markup
-    Rails.logger.info '----- like_callback_query---- '
     edit_message(
       :reply_markup,
       text: t(service_click.reaction, emoji: Emoji::LIKE),
