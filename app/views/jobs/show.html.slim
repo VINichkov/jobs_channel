@@ -50,7 +50,7 @@
         =contact_tag(@job)
         - if can? :edit, @job and @job.new?
           = link_to t('show.job.edit'), edit_job_path(@job), class: 'btn btn-warning'
-        - if can?:approve, @job and @job.new?
+        - if  @job.new? #can? :approve, @job
           = link_to t('show.job.approve'), approve_path(@job), class: 'btn btn-success'
         - if can? :destroy, @job
           = link_to t('show.job.destroy'), job_path(@job), class: 'btn btn-danger', :method => :delete
