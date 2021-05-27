@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class JobsController < InheritedResources::Base
-  load_and_authorize_resource :job, only: %i[edit, update, destroy, approve]
+  load_and_authorize_resource :job, only: %i[edit, update, destroy] #TODO , approve
   before_action :set_job, only: %i[edit update destroy]
 
   def new
