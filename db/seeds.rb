@@ -53,7 +53,7 @@ end
 if Property.find_by_code(:proxy).blank?
   Property.create(
     code: :proxy,
-    value: 'https://ancient-ridge-73891.herokuapp.com/',
+    value: 'https://ancient-ridge-73891.herokuapp.com',
     description: "Proxy"
   )
 end

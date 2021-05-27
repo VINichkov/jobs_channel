@@ -2,7 +2,7 @@ nav.navbar.navbar-dark.bg-primary
   .container
       .d-none.d-sm-none.d-md-inline
         a.navbar-brand href=root_path
-          = brand_tag('logo.svg')
+          = Property.find_prop(:title)
       .d-block.d-sm-block.d-md-none
         button.btn.btn-outline-light[type='button'
           data-bs-toggle='collapse' data-bs-target='#search_panel'
@@ -10,8 +10,8 @@ nav.navbar.navbar-dark.bg-primary
           aria-expanded='false' aria-label='Toggle navigation']
           =render 'svg/search'
       .d-block.d-sm-block.d-md-none
-        .text-light
-          = brand_tag('logo.svg')
+        a.navbar-brand href=root_path
+          = Property.find_prop(:title)
       ul.navbar-nav
         li.nav-item
           a.btn.btn-outline-light href=new_job_path rel='nofollow'

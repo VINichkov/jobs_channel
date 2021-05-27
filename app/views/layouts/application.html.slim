@@ -3,8 +3,8 @@ html
   head
     title
       = yield(:title).blank? ? Property.find_prop(:title) : yield(:title)
-    link rel="icon" href=image_path("logo.svg") sizes="32x32" type="image/svg"
-    link rel="icon" href=image_path("logo.svg") sizes="16x16" type="image/svg"
+    link rel="icon" href=image_path("logo.png") sizes="32x32" type="image/png"
+    link rel="icon" href=image_path("logo.png") sizes="16x16" type="image/png"
     meta[content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"]
     = csrf_meta_tags
     = csp_meta_tag
