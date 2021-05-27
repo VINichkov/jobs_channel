@@ -2,7 +2,7 @@
 
 class JobsController < InheritedResources::Base
   load_and_authorize_resource :job, only: %i[edit, update, destroy] #TODO, approve
-  before_action :set_job, only: %i[edit update destroy]
+  before_action :set_job, only: %i[edit update destroy approve]
 
   def new
     @job = Job.new
