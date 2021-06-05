@@ -1,5 +1,5 @@
 {
-  "name": "real-estate",
+  "name": "channel",
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.13.13",

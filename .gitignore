@@ -11,6 +11,11 @@
 .idea
 /coverage/*
 # Ignore the default SQLite database.
+/pem/*
+dkim
+*.pem
+*.crt
+*.key
 
 # Ignore all logfiles and tempfiles.
 /log/*
