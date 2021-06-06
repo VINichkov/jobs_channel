@@ -11,7 +11,7 @@
 .idea
 /coverage/*
 # Ignore the default SQLite database.
-/pem/*
+/key/*
 dkim
 *.pem
 *.crt

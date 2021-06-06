@@ -59,3 +59,15 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+server 'ubuntu@ec2-54-215-147-240.us-west-1.compute.amazonaws.com',
+       user: 'ubuntu',
+       port: '22',
+       roles: %w{web app db},
+       :primary => true,
+       ssh_options: {
+           user: 'ubuntu', # overrides user setting above
+           keys: %w(sysanchanel.pem),
+           forward_agent: false,
+           auth_methods: %w(publickey password),
+           password: 'please use keys'
+       }
