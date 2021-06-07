@@ -74,4 +74,9 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.default_url_options = { host: ENV["host"], port: ENV["port"]}
+
+  config.public_file_server.headers = {
+      'Cache-Control' => 'public, s-maxage=31536000, max-age=15552000',
+      'Expires' => "#{1.year.from_now.to_formatted_s(:rfc822)}"
+  }
 end
