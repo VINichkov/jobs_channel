@@ -5,7 +5,7 @@ namespace :data do
     last_id = Job.last&.id
     begin
       Indeed.new.run
-    end until last_id < Job.last&.id or Job.last&.id.nil?
+    end until Job.last&.id.nil? ? true : last_id < Job.last&.id
     puts "! Task:load: End"
   end
 end
