@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
-server 'ubuntu@ec2-54-215-147-240.us-west-1.compute.amazonaws.com',
+server 'ubuntu@sysajobs.com',
        user: 'ubuntu',
        port: '22',
        roles: [:web, :app],
