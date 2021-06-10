@@ -1,7 +1,7 @@
 namespace :data do
   desc "Load date"
   task :load => :environment  do
-    puts '! Task:load: Start'
+    puts '! Task:load: Start v1'
     last_id = Job.last&.id
     i = 0
     begin
