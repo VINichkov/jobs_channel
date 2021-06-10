@@ -17,6 +17,7 @@ class Proxy
 
   private
 
+
   def pattern(arg:, url:)
     arg= {url: arg}
     flag = true
@@ -25,7 +26,8 @@ class Proxy
     while flag and i<3 do
       begin
         i +=1
-        uri = URI("#{@proxy}/#{url}?" + arg.to_query)
+        uri = URI(arg[:url])
+        puts uri
         respond = Net::HTTP.get(uri).force_encoding('UTF-8')
         flag = false
       rescue
@@ -34,6 +36,13 @@ class Proxy
       end
     end
     respond
+  end
+
+  def to_file(text, name)
+    puts "Не нашли количества страниц всего сохраняем страницу полностью"
+    file = File.new(name,"w")
+    file.puts text
+    file.close
   end
 
 end

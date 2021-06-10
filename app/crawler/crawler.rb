@@ -19,7 +19,9 @@ class Crawler
 
   def get_page(url)
     begin
-      Nokogiri::HTML(@proxy.connect(url))
+      page = Nokogiri::HTML(@proxy.connect(url))
+      page&.css('svg, link, script, style, footer, head').remove
+      return page
     rescue
       puts ("Ошибка #{$!}")
       nil
