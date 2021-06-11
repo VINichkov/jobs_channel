@@ -19,9 +19,10 @@ class Crawler
 
   def get_page(url)
     begin
-      page = Nokogiri::HTML(@proxy.connect(url))
-      page&.css('svg, link, script, style, footer, head').remove
-      return page
+      Nokogiri::HTML(@proxy.connect(url))
+      #page =
+      #page&.css('svg, link, script, style, footer, head').remove
+      #return page
     rescue
       puts ("Ошибка #{$!}")
       nil
@@ -34,8 +35,7 @@ class Crawler
   end
 
   def to_file(text, name)
-    puts "Не нашли количества страниц всего сохраняем страницу полностью"
-      file = File.new(name,"w")
+    file = File.new(name,"w")
     file.puts text
     file.close
   end

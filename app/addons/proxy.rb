@@ -26,7 +26,7 @@ class Proxy
     while flag and i<3 do
       begin
         i +=1
-        uri = URI(arg[:url])
+        uri = URI("#{@proxy}/#{url}?" + arg.to_query)
         puts uri
         respond = Net::HTTP.get(uri).force_encoding('UTF-8')
         flag = false
