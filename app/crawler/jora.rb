@@ -34,7 +34,7 @@ class Jora < Crawler
 
     if how_long( @context.at_css('span.date, span.job-listed-date')&.text, title[:title] )
       url = url_to_job( title[:href] )
-      company = @context.at_css('div span.company')&.text
+      company = @context.at_css('div span.job-company')&.text
       salary = @context.at_css('div div.salary')&.text&.gsub(',', '')&.scan(/\d+/)
       @context = {
           link: url,
