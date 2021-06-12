@@ -88,7 +88,7 @@ class Job < ApplicationRecord
   end
 
   def description_text
-    description.gsub(/<span>|<\/span>|<\/div>|<ul>|<\/ul>|<\/li>|<\/p>|<li>|<br>|<div>|<h1>|<h2>|<h3>|<h4>|<b>|<\/h1>|<\/h2>|<\/h3>|<\/h4>|<\/b>|<p>/," ").squish
+    description.gsub(/<strong>|<\/strong>|<span>|<\/span>|<\/div>|<ul>|<\/ul>|<\/li>|<\/p>|<li>|<br>|<div>|<h1>|<h2>|<h3>|<h4>|<b>|<\/h1>|<\/h2>|<\/h3>|<\/h4>|<\/b>|<p>/," ").squish
   end
 
 end
