@@ -5,7 +5,6 @@ class Jora < Crawler
   ST = 'date'
   def initialize
     super
-    @host = 'https://us.jora.com'
     @url = 'https://us.jora.com/j?'
   end
 
