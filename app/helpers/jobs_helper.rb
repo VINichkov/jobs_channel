@@ -3,7 +3,7 @@ module JobsHelper
     if contact.host.nil?
       contact.host = 't.me'
       contact.scheme = 'https'
-      contact.path = contact.path.gsub('@','')
+      contact.path = "/#{contact.path.gsub('@','')}"
     end
     contact
   end
