@@ -1,17 +1,18 @@
 module JobsHelper
   def contact_normalize(contact)
-    contact = contact.strip
-    unless contact[0..3] == 'http'
-      contact = 'https://t.me/' + contact.gsub('@','')
+    if contact.host.nil?
+      contact.host = 't.me'
+      contact.scheme = 'https'
+      contact.path = contact.path.gsub('@','')
     end
     contact
   end
 
   def contact_tag(job)
     if job&.contact&.present?
-      link = contact_normalize(job.contact)
-      if link[0..12] == 'https://t.me/'
-        link_to t('show.job.apply_telegram'), link, class: 'btn  btn-primary', role: 'button'
+      link = contact_normalize( URI( job.contact ) )
+      if link.host == 't.me'
+        link_to t('show.job.apply_telegram'), link.to_s, class: 'btn  btn-primary', role: 'button'
       else
         link_to t('show.job.apply'), job.contact, class: 'btn  btn-primary', role: 'button'
       end
