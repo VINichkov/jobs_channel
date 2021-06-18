@@ -20,7 +20,7 @@ namespace :data do
 
 
   def start_load
-    uts "loading..."
+    puts "loading..."
     last_id = Job.last&.id
     i = 0
     begin
