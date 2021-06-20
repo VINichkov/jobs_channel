@@ -2,7 +2,8 @@ namespace :data do
   desc "Load date"
   task :load => :environment  do
     puts '! Task:load: Start v1'
-    rand = [true, false, false, false, false, false, false, false, false, false]
+    rand = [true, false, false, false, false, false, false, false, false,
+            false, false, false, false, false, false, false, false, false, false]
     if rand.sample
       start_load
     end
