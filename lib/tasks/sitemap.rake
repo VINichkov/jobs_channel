@@ -16,8 +16,8 @@ namespace :sitemap do
     end
 
     begin
-      open("https://google.com/ping?sitemap=#{sitemap_url}.xml")
-      open("https://www.bing.com/ping?sitemap=#{sitemap_url}.xml")
+      URI.open("https://google.com/ping?sitemap=#{sitemap_url}.xml")
+      URI.open("https://www.bing.com/ping?sitemap=#{sitemap_url}.xml")
     rescue
       puts "____________________Error: #{$!}"
     end
