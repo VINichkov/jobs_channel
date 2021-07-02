@@ -83,3 +83,19 @@ if Property.find_by_code(:key_for_search).blank?
     description: "The key for search by a job board"
   )
 end
+
+if Property.find_by_code(:site_description).blank?
+  Property.create(
+      code: :site_description,
+      value: 'Sysjobs is a search job telegram channel for systems analysts. Make job search easy with us!',
+      description: "Descriptions for meta description"
+  )
+end
+
+if Property.find_by_code(:meta_keys_default).blank?
+  Property.create(
+      code: :meta_keys_default,
+      value: 'Sysajobs, Systems Analyst, USA, job, business analyst, Employment, telegram',
+      description: "The meta tag Keywords"
+  )
+end

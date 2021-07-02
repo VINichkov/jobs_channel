@@ -47,11 +47,8 @@ class Search
   def prepare_keys
     keys = search_key.delete("<>{}#@!,:*&()'`\"’|")
     if keys.present?
-      remote_frequent_keywords(keys).split(" ").map{|t| t=t+":*"}.join("|")
+      Addition.remote_frequent_keywords(keys).split(" ").map{|t| t=t+":*"}.join("|")
     end
   end
 
-  def remote_frequent_keywords(keys)
-    keys.gsub(/((\W|^|\s)(of|on|in|from|i|you|he|she|it|is|are|r|s|we|they|m|who|am|me|whom|her|him|us|them|my|mine|his|hers|your|yours|our|ours|their|theirs|whose|its|that|which|where|why|a|the|as|an|over|under|to|whith|whithout|by|at|into|onto|work|job|looking|Responsibilities|responsibilities|Aug|Jul|Projects|Dec|Mrs|Mr|experience)(\s|$|\W))/,' ')
-  end
 end

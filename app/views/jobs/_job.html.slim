@@ -19,7 +19,7 @@
     div
       = job.salary
     div
-      = simple_format(job.description_text[0..400] + '...')
+      = simple_format(job.description_text(400)+ '...')
     .small.text-info.mb-3
       = l( job.date_posted, format: :default )
     .d-grid.gap-2.d-md-flex.justify-content-md-end

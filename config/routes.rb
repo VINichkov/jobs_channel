@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   telegram_webhook TelegramWebhooksController
   resources :jobs
   get 'approve_job/:id', to: 'jobs#approve', as: :approve
+  get 'sitemap', to: 'index#sitemap', as: :sitemap
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 

@@ -87,8 +87,46 @@ class Job < ApplicationRecord
            "user_rank(fts, '#{params[:search_key]}', '#{params[:search_key]}', #{mode}) AS \"rank\"").where(query, params)
   end
 
-  def description_text
-    description.gsub(/<strong>|<\/strong>|<span>|<\/span>|<\/div>|<ul>|<\/ul>|<\/li>|<\/p>|<li>|<br>|<div>|<h1>|<h2>|<h3>|<h4>|<b>|<\/h1>|<\/h2>|<\/h3>|<\/h4>|<\/b>|<p>/," ").squish
+  def description_text( truncate=nil)
+    #description.gsub(/<strong>|<\/strong>|<span>|<\/span>|<\/div>|<ul>|<\/ul>|<\/li>|<\/p>|<li>|<br>|<div>|<h1>|<h2>|<h3>|<h4>|<b>|<\/h1>|<\/h2>|<\/h3>|<\/h4>|<\/b>|<p>/," ").squish
+    if description
+      arg = truncate.nil? ?  description : description[0..truncate*2]
+      text = HtmlToPlainText.plain_text(arg).squish
+      if truncate
+        text = text.truncate(truncate, separator: ' ',omission: '')
+      end
+    end
   end
+
+  def keywords(count_keys = 20, min_length_word = 4)
+    if title
+      array_keywords = [title] * 10
+      array_keywords += [location] * 10
+      if description
+        desc = HtmlToPlainText.plain_text(description)
+        desc = Addition.remote_frequent_keywords(desc)&.squish
+        array_keywords += desc&.gsub(/[^[:word:]]/, ' ')&.downcase&.split(' ')
+      end
+      array_keywords.compact!
+      index_hash = {}
+      array_keywords.each do |word|
+        if word.length > min_length_word
+          index_hash[word] ? index_hash[word] += 1 : index_hash[word] = 1
+        end
+      end
+      array_keywords = []
+      index_hash.each do |key, value|
+        array_keywords << { key => value }
+      end
+      array_keywords.sort { |x, y| y.values[0] <=> x.values[0] }[0..count_keys - 1].map { |t| t.keys.first }
+    end
+  end
+
+  def title_text
+    if title
+      location.present? ? "#{location} | #{title}" : title
+    end
+  end
+
 
 end

@@ -1,56 +1,60 @@
-.card
-  .card-header.text-center
-    h3.card-title
-      = @job.title
-  .card-body.compact
-    h5.text-center
-      strong
-        = t('show.job.job_details')
-    -if @job.company_name
+- content_for :title, @job&.title_text
+- meta_tag "description",   @job&.description_text
+- meta_tag "keywords", @job&.keywords.join(', ')
+- cache @job
+  .card
+    .card-header.text-center
+      h3.card-title
+        = @job.title
+    .card-body.compact
+      h5.text-center
+        strong
+          = t('show.job.job_details')
+      -if @job.company_name
+        p
+          strong
+            |#{t('show.job.company')}: &nbsp;
+          span.text-warning
+            = @job.company_name
       p
         strong
-          |#{t('show.job.company')}: &nbsp;
-        span.text-warning
-          = @job.company_name
-    p
-      strong
-        |#{t('show.job.location')}: &nbsp;
-      span.text-success
-        = @job.location
-    p
-      strong
-        |#{t('show.job.remote')}: &nbsp;
-      span
-        = t("job.remote.#{@job.remote}")
-    p
-      strong
-        |#{t('show.job.job_type')}: &nbsp;
-      span
-        = t("job.job_type.#{@job.job_type}")
-    - unless @job.salary.nil?
+          |#{t('show.job.location')}: &nbsp;
+        span.text-success
+          = @job.location
       p
         strong
-          |#{t('show.job.salary')}: &nbsp;
+          |#{t('show.job.remote')}: &nbsp;
         span
-          =@job.salary
-    p
-      strong
-        | #{t('show.job.posted')}: &nbsp;
-      span
-        = l( @job.date_posted, format: :default )
-  .card-body
-    h5.text-center
-      strong
-        |#{t('show.job.description')}
-    .card-text
-      =simple_format(@job.description)
-  .card-body
-    .row
-      .d-grid.gap-2.d-md-flex.justify-content-md-center
-        =contact_tag(@job)
-        - if can? :edit, @job and @job.new?
-          = link_to t('show.job.edit'), edit_job_path(@job), class: 'btn btn-warning'
-        - if  @job.new? #can? :approve, @job
-          = link_to t('show.job.approve'), approve_path(@job), class: 'btn btn-success'
-        - if can? :destroy, @job
-          = link_to t('show.job.destroy'), job_path(@job), class: 'btn btn-danger', :method => :delete
+          = t("job.remote.#{@job.remote}")
+      p
+        strong
+          |#{t('show.job.job_type')}: &nbsp;
+        span
+          = t("job.job_type.#{@job.job_type}")
+      - unless @job.salary.nil?
+        p
+          strong
+            |#{t('show.job.salary')}: &nbsp;
+          span
+            =@job.salary
+      p
+        strong
+          | #{t('show.job.posted')}: &nbsp;
+        span
+          = l( @job.date_posted, format: :default )
+    .card-body
+      h5.text-center
+        strong
+          |#{t('show.job.description')}
+      .card-text
+        =simple_format(@job.description)
+    .card-body
+      .row
+        .d-grid.gap-2.d-md-flex.justify-content-md-center
+          =contact_tag(@job)
+          - if can? :edit, @job and @job.new?
+            = link_to t('show.job.edit'), edit_job_path(@job), class: 'btn btn-warning'
+          - if  @job.new? #can? :approve, @job
+            = link_to t('show.job.approve'), approve_path(@job), class: 'btn btn-success'
+          - if can? :destroy, @job
+            = link_to t('show.job.destroy'), job_path(@job), class: 'btn btn-danger', :method => :delete

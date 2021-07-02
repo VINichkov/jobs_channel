@@ -33,6 +33,7 @@ dkim
 !/storage/.keep
 
 /public/assets
+/public/sitemap.xml
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.

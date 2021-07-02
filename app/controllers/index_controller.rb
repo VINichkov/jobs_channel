@@ -13,6 +13,10 @@ class IndexController < ApplicationController
     end
   end
 
+  def sitemap
+    render file: 'public/sitemap.xml', formats: :xml
+  end
+
   private
 
   def search_params
