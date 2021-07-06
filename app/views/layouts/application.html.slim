@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      = yield(:title).blank? ? Property.find_prop(:title) : yield(:title)
+      = yield(:title).blank? ? Property.find_prop(:title) : yield(:title) 
     link rel="icon" href=image_path("logo.png") sizes="32x32" type="image/png"
     link rel="icon" href=image_path("logo.png") sizes="16x16" type="image/png"
     meta[content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"]
@@ -31,6 +31,12 @@ html
         .container.pt-3
           .row
             .offset-lg-2.col-lg-8.offset-md-0.col-md-12
+              .d-block.d-sm-block.d-md-none
+                .card.mb-3
+                  .card-body
+                    |Join our Telegram Channel for quick updates 
+                    a.navbar-brand href= Property.find_prop(:url_telegram_channel)
+                      = Property.find_prop(:name_telegram_channel) 
               = render('inc/alert', alert: alert, notice: notice) if alert || notice
               = render('index/search_from', search: @search)
               = yield

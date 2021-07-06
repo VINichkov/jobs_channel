@@ -3,6 +3,11 @@ nav.navbar.navbar-dark.bg-primary
       .d-none.d-sm-none.d-md-inline
         a.navbar-brand href=root_path
           = Property.find_prop(:title)
+      .d-none.d-sm-none.d-md-inline
+        span.text-light
+          |Join our Telegram Channel for quick updates 
+          a.navbar-brand href= Property.find_prop(:url_telegram_channel)
+            = Property.find_prop(:name_telegram_channel)    
       .d-block.d-sm-block.d-md-none
         button.btn.btn-outline-light[type='button'
           data-bs-toggle='collapse' data-bs-target='#search_panel'

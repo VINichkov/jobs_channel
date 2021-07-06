@@ -99,3 +99,19 @@ if Property.find_by_code(:meta_keys_default).blank?
       description: "The meta tag Keywords"
   )
 end
+
+if Property.find_by_code(:url_telegram_channel).blank?
+  Property.create(
+    code: :url_telegram_channel,
+    value: 'https://t.me/sysajobs',
+    description: 'The link to our telegram channel'
+  )
+end
+
+if Property.find_by_code(:name_telegram_channel).blank?
+  Property.create(
+    code: :name_telegram_channel,
+    value: '@sysajobs',
+    description: 'The name of telegram channel'
+  )
+end
