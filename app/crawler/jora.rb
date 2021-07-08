@@ -74,6 +74,7 @@ class Jora < Crawler
         salary_max: @context[:salary_max],
         location_name: @location,
         description: html_to_markdown(description),
+        remote:  @location.include?('Remote'),
         apply: apply }
     else
       log("title: #{@context[:title]} ERROR description is null #{@context[:link]}")

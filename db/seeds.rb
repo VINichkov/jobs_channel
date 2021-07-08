@@ -58,12 +58,13 @@ if Property.find_by_code(:proxy).blank?
   )
 end
 
-if Property.find_by_code(:locations).blank?
+if Property.find_by_code(:locations).blank? or Property.find_by_code(:locations).description = "Location for crawling"
+  Property.find_by_code(:locations)&.destroy
   Property.create(
     code: :locations,
-    value: ['San Francisco', 'Seattle', 'Portland', 'San Jose', 'Los Angeles',
-            'San Diego', 'Phoenix', 'Denver', 'Austin', 'Dallas', 'Minneapolis', 'Houston', 'Chicago',
-            'Detroit', 'Atlanta', 'Boston', 'New York', 'Philadelphia', 'Baltimore', 'Washington, DC'],
+    value: ['San Francisco', 'Seattle', 'Portland', 'Remote, OR','San Jose', 'Los Angeles',
+            'San Diego', 'Phoenix', 'Denver', 'Remote', 'Austin', 'Dallas', 'Minneapolis', 'Houston', 'Chicago',
+            'Detroit', 'Atlanta', 'Boston', 'New York', 'Philadelphia', 'Baltimore', 'Washington, DC', 'Remote Work'],
     description: "Location for crawling"
   )
 end

@@ -10,7 +10,7 @@ class AutomCreateJob
       description: context.job[:description],
       company_name: context.job[:company],
       source: context.job[:link],
-      #remote: context.job[:remote], #TODO
+      remote: context.job[:remote], #TODO
       #job_type: context.job[:job_type], #TODO
       contact: context.job[:apply]
     )

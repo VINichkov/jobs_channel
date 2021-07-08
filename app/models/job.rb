@@ -57,7 +57,7 @@ class Job < ApplicationRecord
     text += "<strong>#{title}</strong>\n"
     text += "<strong>#{I18n.t('show.job.company')}:</strong> #{company_name}\n"
     text += "<strong>#{I18n.t('show.job.location')}:</strong> #{Addition.to_hashtag(location)}\n"
-    text += "<strong>#{tag_remote}:</strong> #{I18n.t("job.remote.#{remote}")}\n"
+    #text += "<strong>#{tag_remote}:</strong> #{I18n.t("job.remote.#{remote}")}\n"
     text += "<strong>#{I18n.t('show.job.job_type')}:</strong> #{Addition.to_hashtag(I18n.t("job.job_type.#{job_type}"))}\n"
     text += "<strong>#{I18n.t('show.job.salary')}:</strong> #{salary(true)}\n" if salary
     text += "<strong>#{I18n.t('show.job.description')}</strong>\n"
